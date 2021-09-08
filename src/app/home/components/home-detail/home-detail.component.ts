@@ -1,13 +1,14 @@
-import { Component, ViewChild } from '@angular/core';
-import { Channel, ImageSlider, ImageSliderComponent, TopMenu } from './shared/components';
+import { ActivatedRoute, Route } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Channel } from 'src/app/shared/components';
+
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-home-detail',
+  templateUrl: './home-detail.component.html',
+  styleUrls: ['./home-detail.component.css']
 })
-export class AppComponent {
-  @ViewChild('imageSlider', {static: true}) imgSlider: ImageSliderComponent;
-  scrollBcgcolor = 'red';
+export class HomeDetailComponent implements OnInit {
+  selectedTabLink;
   channels: Channel[] = [
     {
       id: 1,
@@ -122,32 +123,11 @@ export class AppComponent {
       link: 'furnitures'
     }
   ];
-  imageSliders: ImageSlider[] = [
-    {
-      imgUrl: 'https://cdn.pinduoduo.com/upload/home/img/index/supermarket_v2.jpg',
-      link: '',
-      caption: ''
-    },
-    {
-      imgUrl: 'https://cdn.pinduoduo.com/upload/home/img/subject/girlclothes.jpg',
-      link: '',
-      caption: ''
-    },
-    {
-      imgUrl: 'https://cdn.pinduoduo.com/upload/home/img/subject/boyshirt.jpg',
-      link: '',
-      caption: ''
-    },
-    {
-      imgUrl: 'https://cdn.pinduoduo.com/upload/shoes.jpg',
-      link: '',
-      caption: ''
-    },
-    {
-      imgUrl: 'https://cdn.pinduoduo.com/upload/home/img/subject/food.jpg',
-      link: '',
-      caption: ''
-    }
-  ];
+  constructor(private route: ActivatedRoute) { }
+  ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      this.selectedTabLink = params.get('tabLink')
+    })
+  }
 
 }

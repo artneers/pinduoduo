@@ -1,0 +1,15 @@
+<p>
+  {{ obj | json }}
+</p>
+<p>
+  {{ date | date: 'long' }}
+</p>
+<p>
+  {{ date | appAgo }}
+</p>
+<p>
+  {{ price | currency: 'CNY': 'symbol': '4.0-2' }}
+</p>
+<p>
+  {{ data | slice: 1:3 }}
+</p>
