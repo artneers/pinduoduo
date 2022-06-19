@@ -1,0 +1,7 @@
+<div class="ad-container" *ngIf="ad">
+  <img [src]="ad.imageUrl" alt="" class="ad-image">
+</div>
+
+<app-vertical-grid itemWidth="10rem" itemHeight="1rem">
+  <app-product-tile *ngFor="let product of products$ | async" [routerLink]="['/products', product.id]" [product]="product"></app-product-tile>
+</app-vertical-grid>

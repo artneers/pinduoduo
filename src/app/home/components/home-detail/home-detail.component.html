@@ -1,13 +1,18 @@
-<div *ngIf="selectedTabLink === 'hot' else other">
-  <app-horizontal-grid>
-    <div appGridItem *ngFor="let item of channels">
-      <img [src]="item.icon" alt="" [appGridItemImage]="'4rem'" [fitMode]="'cover'">
-      <span [appGridItemTitle]="'0.6rem'">{{ item.title }}</span>
-    </div>
-  </app-horizontal-grid>
+<ng-container *ngIf="selectedTabLink$ | async as tab">
+  <ng-container *ngIf="tab === 'hot'">
+    <app-image-slider [sliders]="imageSliders$ | async" #imageSlider></app-image-slider>
+    <app-horizontal-grid>
+      <div appGridItem *ngFor="let item of channels$ | async">
+        <img [src]="item.icon" alt="" [appGridItemImage]="'4rem'" [fitMode]="'cover'">
+        <span [appGridItemTitle]="'0.6rem'">{{ item.title }}</span>
+      </div>
+    </app-horizontal-grid>
+  </ng-container>
+</ng-container>
+<div class="ad-container" *ngIf="ad">
+  <img [src]="ad.imageUrl" alt="" class="ad-image">
 </div>
-<ng-template #other>
-  Other works
-</ng-template>
-<a [routerLink]="[ 'grand' ]">link to grand</a>
-<router-outlet></router-outlet>
+
+<app-vertical-grid itemWidth="20rem" itemHeight="2rem">
+  <app-product-card *ngFor="let product of products$ | async" [routerLink]="['/products', product.id]" [product]="product"></app-product-card>
+</app-vertical-grid>

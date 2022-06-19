@@ -4,7 +4,10 @@
   [backgroundColor]="'#fff'"
   titleColor="#333"
   titleActiveColor="red"
+  [selectedTabLink]="selectedTablink$ | async"
   indicatorColor="red"
 ></app-scrollable-tab>
-<app-image-slider [sliders]="imageSliders" #imageSlider></app-image-slider>
-<router-outlet></router-outlet>
+<div class="main">
+  <router-outlet></router-outlet>
+</div>
+

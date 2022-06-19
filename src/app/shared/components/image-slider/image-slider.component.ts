@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, ElementRef, ViewChild, Renderer2 } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, ViewChild, Renderer2, ChangeDetectionStrategy } from '@angular/core';
+import { isArray } from 'util';
 
 export interface ImageSlider {
   imgUrl: string;
@@ -14,20 +15,26 @@ export interface ImageSlider {
 export class ImageSliderComponent implements OnInit {
   public selectedIndex:number = 0;
   public intervalId: any;
-  public intervalBySeconds: number = 2;
+  @Input() intervalBySeconds: number = 2;
   @Input() sliders: ImageSlider[] = [];
   @Input() sliderHeight = '160px';
   @ViewChild('imgSlider', {static: true}) imgSlider: ElementRef;
   constructor(private rd2: Renderer2) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.intervalId);
+  }
 
   ngAfterViewInit(): void {
+    if (this.intervalBySeconds <= 0) return;
     this.intervalId = setInterval(() => {
       this.rd2.setProperty(
         this.imgSlider.nativeElement,
         "scrollLeft",
-        (this.getIndex(++this.selectedIndex) * 
+        (this.getIndex(++this.selectedIndex) *
           this.imgSlider.nativeElement.scrollWidth /
           this.sliders.length
         ))
@@ -42,7 +49,7 @@ export class ImageSliderComponent implements OnInit {
   }
   // 计算当前所在图片的索引，避免跨多张自动轮播图片
   handleScroll(ev) {
-    let radio = ev.target.scrollLeft / (ev.target.scrollWidth / this.sliders.length);
-    this.selectedIndex = Math.round(radio);
+    let ratio = ev.target.scrollLeft / (ev.target.scrollWidth / this.sliders.length);
+    this.selectedIndex = Math.round(ratio);
   }
 }

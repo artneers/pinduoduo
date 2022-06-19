@@ -1,0 +1,16 @@
+GET {{imooc}}/banners?icode={{iCode}}
+
+###
+GET {{imooc}}/tabs?icode={{iCode}}
+
+###
+GET {{imooc}}/channels?icode={{iCode}}
+
+###
+GET {{imooc}}/ads?icode={{iCode}}
+
+###
+GET {{imooc}}/products?categories_like=men&icode={{iCode}}
+
+###
+GET {{imooc}}/productVariants?_expand=product&_embed=productVariantImages&productId=1&icode={{iCode}}

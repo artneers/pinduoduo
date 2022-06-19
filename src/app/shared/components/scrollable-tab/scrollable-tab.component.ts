@@ -13,13 +13,13 @@ export interface TopMenu {
 })
 export class ScrollableTabComponent implements OnInit, OnChanges {
 
-  constructor() { 
+  constructor() {
     console.log("组件构造调用")
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     // console.log("组件输入属性改变", changes)
-    
+
   }
 
 
@@ -28,7 +28,6 @@ export class ScrollableTabComponent implements OnInit, OnChanges {
   }
 
   title = '拼多多';
-  selectedIndex = -1;
   @Input() menus: TopMenu[] = [];
   @Input() backgroundColor = '#fff';
   // 点击后的文字颜色
@@ -37,10 +36,10 @@ export class ScrollableTabComponent implements OnInit, OnChanges {
   @Input() titleColor = 'blue';
   // 文字下方小横条的颜色
   @Input() indicatorColor = '#fff';
+  @Input() selectedTabLink: string;
   @Output() tabSelected = new EventEmitter();
 
   handleSelection(index: number) {
-    this.selectedIndex = index;
-    this.tabSelected.emit(this.menus[this.selectedIndex])
+    this.tabSelected.emit(this.menus[index])
   }
 }

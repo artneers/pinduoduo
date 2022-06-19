@@ -1,13 +1,11 @@
+import { DialogModule } from './../dialog/dialog.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HorizontalGridComponent } from './components/horizontal-grid';
-import { ScrollableTabComponent } from './components/scrollable-tab';
-import { ImageSliderComponent } from './components/image-slider';
-import { GridItemDirective } from './directives/grid-item.directive';
-import { GridItemImageDirective } from './directives/grip-item-image.directive';
-import { GridItemTitleDirective } from './directives/grid-item-title.directive';
+import { TagDirective, GridItemDirective, GridItemImageDirective, GridItemTitleDirective, AvatarDirective } from './directives';
+import { HorizontalGridComponent, ScrollableTabComponent, ImageSliderComponent, FooterComponent, VerticalGridComponent, ProductCardComponent, ProductTileComponent, BackButtonComponent } from './components';
 import { AgoPipe } from './pipes';
+import { CountDownComponent } from './components/count-down/count-down.component';
 
 @NgModule({
   declarations: [
@@ -17,22 +15,40 @@ import { AgoPipe } from './pipes';
     GridItemDirective,
     GridItemImageDirective,
     GridItemTitleDirective,
-    AgoPipe
+    AgoPipe,
+    FooterComponent,
+    VerticalGridComponent,
+    ProductCardComponent,
+    TagDirective,
+    AvatarDirective,
+    ProductTileComponent,
+    BackButtonComponent,
+    CountDownComponent
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    DialogModule
   ],
   exports: [
     CommonModule,
     FormsModule,
+    DialogModule,
     ScrollableTabComponent,
     ImageSliderComponent,
     HorizontalGridComponent,
+    VerticalGridComponent,
+    ProductCardComponent,
+    FooterComponent,
+    BackButtonComponent,
+    CountDownComponent,
     GridItemDirective,
     GridItemImageDirective,
     GridItemTitleDirective,
-    AgoPipe
+    AgoPipe,
+    TagDirective,
+    AvatarDirective,
+    ProductTileComponent
   ]
 })
 export class SharedModule { }

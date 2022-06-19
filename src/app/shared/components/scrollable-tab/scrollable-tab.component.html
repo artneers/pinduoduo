@@ -7,6 +7,6 @@
     >
       {{ menu.title }}
     </a>
-    <span class="indicator" [ngStyle]="{'background-color': indicatorColor}" *ngIf="i === selectedIndex"></span>
+    <span class="indicator" [ngStyle]="{'background-color': indicatorColor}" *ngIf="menu.link === selectedTabLink"></span>
   </li>
 </ul>
